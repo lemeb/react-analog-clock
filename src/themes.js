@@ -6,6 +6,8 @@ export const light = {
     minutes: '#ccc',
     hour: '#000',
     tick: '#000',
+    timeInCenter: false,
+    hiddenTicks: false,
 };
 
 export const dark = {

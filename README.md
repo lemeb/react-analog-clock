@@ -23,6 +23,7 @@ prop    | default
 `width` | 400px
 `theme` | Themes.dark
 `gmtOffset` (optional)| offset of `new Date()` _(e.g. '-5.5')_
+`relativeOffset` (optional) | offset of `new Date().now()` in milliseconds _(e.g. '-2000' : -2 seconds)_
 
 ### Themes
 Theme      | Description
@@ -33,6 +34,7 @@ Theme      | Description
 `lime`     | Green base, white border
 `sherbert` | Gradient (green/pink) base, white border
 `navy`     | Gradient (blue) base, white border
+`radio`    | Like a radio clock, with the text at the center and ticks that disappear
 
 ### Scripts
 script         | description

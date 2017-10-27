@@ -86,7 +86,9 @@ const AnalogLargeTick = {
     width: 4,
 };
 
-const hiddenTicks = (s => s.theme.hiddenTicks);
+const hiddenTicks = {
+    property: s => s.theme.hiddenTicks,
+};
 
 export default {
     base: AnalogBase,
