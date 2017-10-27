@@ -11,7 +11,6 @@ export default class AnalogClock extends Component {
     constructor(props) {
         super();
 
-        console.log(cssTransform(Styles, props));
         this.state = updateTime(props); 
         this.styles = cssTransform(Styles, props);
     }
