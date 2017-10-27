@@ -23,7 +23,7 @@ export function updateTime({ gmtOffset, relativeOffset, seconds, minutes, hour }
         } else if (relativeOffset && relativeOffset !== 'undefined'){ 
             // Relative Offset
             const offsetNow = new Date(now.valueOf() + (parseFloat(relativeOffset)));
-            [seconds, minutes, hour] = [offsetNow.getUTCSeconds(), offsetNow.getUTCMinutes(), offsetNow.getUTCHours()];
+            [seconds, minutes, hour] = [offsetNow.getSeconds(), offsetNow.getMinutes(), offsetNow.getHours()];
             return { relativeOffset, seconds, minutes, hour };
         } else {
             // No Offset
