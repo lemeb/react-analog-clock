@@ -57,3 +57,18 @@ export const navy = {
     hour: '#fff',
     tick: '#fff',
 };
+
+export const radio = {
+    background: '#000',
+    border: '#000',
+    center: '#000',
+    seconds: 'red',
+    minutes: 'red',
+    hour: 'red',
+    tick: 'red',
+    timeInCenter: true,
+    time: 'red',
+    hiddenTicks: true,
+}
+
+// TODO add timeInCenter, time, hiddenTicks for everyone

@@ -13,18 +13,14 @@ export function cssTransform(styles, props) {
     }, {});
 }
 
-export function updateTime({ seconds, minutes, hour }) {
-    seconds += 1;
-    if (seconds === 60) {
-        seconds = 0;
-        minutes += 1;
-    }
-    if (minutes === 60) {
-        minutes = 0;
-        hour += 1;
-    }
-    if (hour === 12) {
-        hour = 0;
-    }
-    return { seconds, minutes, hour };
+export function updateTime({ gmtOffset, seconds, minutes, hour }) {
+        const now = new Date();
+        if (gmtOffset && gmtOffset !== 'undefined') {
+            const offsetNow = new Date(now.valueOf() + (parseFloat(gmtOffset) * 1000 * 60 * 60));
+            [seconds, minutes, hour] = [offsetNow.getUTCSeconds(), offsetNow.getUTCMinutes(), offsetNow.getUTCHours()];
+            return { gmtOffset, seconds, minutes, hour };
+        } else {
+            [seconds, minutes, hour] = [now.getSeconds(), now.getMinutes(), now.getHours()];
+            return { gmtOffset, seconds, minutes, hour };
+        }
 }

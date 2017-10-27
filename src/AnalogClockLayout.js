@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function renderNotches({ smallTick, largeTick }) {
+function renderNotches({ smallTick, largeTick, hiddenTicks }, seconds) {
     const notches = [];
     for (let i = 0; i < 60; i++) {
         let style = Object.assign({}, i % 5 === 0 ? largeTick : smallTick, {
             transform: `translateX(-50%) translateY(-100%) rotate(${i * 6}deg)`,
+            visibility: `${i > seconds && hiddenTicks ? 'hidden' : 'visible'}`,
         });
         notches.push(<span key={i} style={style} />);
     }
@@ -25,13 +26,19 @@ export default function AnalogClockLayout({ hour, minutes, seconds, styles }) {
     const hourStyle = Object.assign({}, styles.hour, {
         transform: `translateX(-50%) translateY(-100%) rotate(${hour * 30 + 1.5}deg)`,
     });
+    var addZeroIfNeeded = function (digit) {
+        return (digit < 10 ? '0':'') + digit.toString();
+    };
     return (
         <div style={styles.base}>
             <div data-testid="seconds" style={secondStyle}></div>
             <div data-testid="minutes" style={minuteStyle}></div>
             <div data-testid="hour" style={hourStyle}></div>
-            <div style={styles.center}></div>
-            {renderNotches(styles)}
+            <div style={styles.center}> </div>
+            <div style={styles.time}>
+            {addZeroIfNeeded(hour)}:{addZeroIfNeeded(minutes)}
+            <br/>{addZeroIfNeeded(seconds)}</div>
+            {renderNotches(styles, seconds)}
         </div>
     );
 }

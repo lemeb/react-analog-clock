@@ -24,8 +24,9 @@ export default class AnalogClock extends Component {
     componentDidMount() {
         this.interval = setInterval(() => {
             this.setState(updateTime(this.state));
-        }, 1000);
+        }, 10);
     }
+    // TODO align clocks to reduce interval
 
     componentWillReceiveProps(nextProps) {
         this.styles = cssTransform(Styles, nextProps);

@@ -1,6 +1,7 @@
 const AnalogBase = {
     background: s => s.theme.background,
     backgroundSize: 'cover',
+    display:'table',
     backgroundPosition: 'center',
     borderRadius: '100%',
     border: s => `${s.width / 20}px solid ${s.theme.border}`,
@@ -10,15 +11,25 @@ const AnalogBase = {
 };
 
 const AnalogCenter = {
+    visibility: s => (s.theme.timeInCenter ? 'hidden' : 'visible'),
     background: s => s.theme.center,
     borderRadius: '100%',
     height: '12px',
+    width: '12px',
     left: '50%',
     position: 'absolute',
     top: '50%',
     transform: 'translateX(-50%) translateY(-50%)',
-    width: '12px',
 };
+
+const DigitalTime = {
+    visibility: s => (s.theme.timeInCenter ? 'visible' : 'hidden'),
+    color: s => s.theme.time,
+    display:'table-cell',
+    textAlign: 'center',
+    height: '100%',
+    verticalAlign: 'middle',
+}
 
 const AnalogHand = {
     left: '50%',
@@ -28,18 +39,21 @@ const AnalogHand = {
 };
 
 const AnalogSecondHand = Object.assign({}, AnalogHand, {
+    visibility: s => (s.theme.timeInCenter ? 'hidden' : 'visible'),
     background: s => s.theme.seconds,
     height: s => Math.floor(s.width * 0.425),
     width: 3,
 });
 
 const AnalogMinuteHand = Object.assign({}, AnalogHand, {
+    visibility: s => (s.theme.timeInCenter ? 'hidden' : 'visible'),
     background: s => s.theme.minutes,
     height: s => Math.floor(s.width * 0.35),
     width: 6,
 });
 
 const AnalogHourHand = Object.assign({}, AnalogHand, {
+    visibility: s => (s.theme.timeInCenter ? 'hidden' : 'visible'),
     background: s => s.theme.hour,
     height: s => Math.floor(s.width * 0.2),
     width: 8,
@@ -65,6 +79,8 @@ const AnalogLargeTick = {
     width: 4,
 };
 
+const hiddenTicks = (s => s.theme.hiddenTicks);
+
 export default {
     base: AnalogBase,
     center: AnalogCenter,
@@ -73,4 +89,6 @@ export default {
     hour: AnalogHourHand,
     smallTick: AnalogSmallTick,
     largeTick: AnalogLargeTick,
+    time: DigitalTime,
+    hiddenTicks: hiddenTicks,
 };
