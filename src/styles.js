@@ -8,6 +8,7 @@ const AnalogBase = {
     height: s => s.width,
     position: 'relative',
     width: s => s.width,
+    margin: '20px',
 };
 
 const AnalogCenter = {
@@ -29,6 +30,12 @@ const DigitalTime = {
     textAlign: 'center',
     height: '100%',
     verticalAlign: 'middle',
+    fontFamily: 'monospace',
+    fontSize: '30px',
+}
+
+const DigitalSeconds = {
+    fontSize: '20px',
 }
 
 const AnalogHand = {
@@ -90,5 +97,6 @@ export default {
     smallTick: AnalogSmallTick,
     largeTick: AnalogLargeTick,
     time: DigitalTime,
+    secondsTime: DigitalSeconds,
     hiddenTicks: hiddenTicks,
 };
