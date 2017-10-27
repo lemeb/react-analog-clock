@@ -6,7 +6,7 @@ function renderNotches({ smallTick, largeTick, hiddenTicks }, seconds) {
     for (let i = 0; i < 60; i++) {
         let style = Object.assign({}, i % 5 === 0 ? largeTick : smallTick, {
             transform: `translateX(-50%) translateY(-100%) rotate(${i * 6}deg)`,
-            visibility: `${i > seconds && hiddenTicks ? 'hidden' : 'visible'}`,
+            visibility: `${i > seconds && hiddenTicks.property ? 'hidden' : 'visible'}`,
         });
         notches.push(<span key={i} style={style} />);
     }
