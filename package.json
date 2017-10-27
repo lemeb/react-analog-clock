@@ -19,11 +19,12 @@
     "prepublish": "npm run clean && npm run lint && npm run build"
   },
   "authors": [
-    "Zack Argyle <zack.argyle@gmail.com> (https://github.com/zackargyle)"
+    "Zack Argyle <zack.argyle@gmail.com> (https://github.com/zackargyle)",
+    "Léopold Mebazaa <lemebfr@gmail.com> (https://github.com/lemeb)"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/zackargyle/react-analog-clock.git"
+    "url": "git+https://github.com/zackargyle/react-analog-clock.git"
   },
   "peerDependencies": {
     "react": "^16.0.0",
@@ -78,5 +79,10 @@
     "es/",
     "lib/"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "homepage": "https://github.com/zackargyle/react-analog-clock#readme",
+  "directories": {
+    "test": "tests"
+  },
+  "author": ""
 }
