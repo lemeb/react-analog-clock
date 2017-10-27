@@ -19,7 +19,8 @@
     "prepublish": "npm run clean && npm run lint && npm run build"
   },
   "authors": [
-    "Zack Argyle <zack.argyle@gmail.com> (https://github.com/zackargyle)"
+    "Zack Argyle <zack.argyle@gmail.com> (https://github.com/zackargyle)",
+    "Léopold Mebazaa <lemebfr@gmail.com> (https://github.com/lemeb)"
   ],
   "repository": {
     "type": "git",
