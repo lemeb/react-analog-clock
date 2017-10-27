@@ -37,7 +37,7 @@ export default function AnalogClockLayout({ hour, minutes, seconds, styles }) {
             <div style={styles.center}> </div>
             <div style={styles.time}>
             {addZeroIfNeeded(hour)}:{addZeroIfNeeded(minutes)}
-            <br/>{addZeroIfNeeded(seconds)}</div>
+            <div style={styles.secondsTime}>{addZeroIfNeeded(seconds)}</div></div>
             {renderNotches(styles, seconds)}
         </div>
     );
