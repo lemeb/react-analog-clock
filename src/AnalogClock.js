@@ -11,7 +11,7 @@ export default class AnalogClock extends Component {
     constructor(props) {
         super();
 
-        this.state = updateTime({}); 
+        this.state = updateTime(props); 
         this.styles = cssTransform(Styles, props);
     }
 
@@ -47,6 +47,7 @@ AnalogClock.propTypes = {
     }),
     width: PropTypes.number,
     gmtOffset: PropTypes.string,
+    relativeOffset: PropTypes.string,
 };
 
 AnalogClock.defaultProps = {

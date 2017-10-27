@@ -13,14 +13,21 @@ export function cssTransform(styles, props) {
     }, {});
 }
 
-export function updateTime({ gmtOffset, seconds, minutes, hour }) {
+export function updateTime({ gmtOffset, relativeOffset, seconds, minutes, hour }) {
         const now = new Date();
         if (gmtOffset && gmtOffset !== 'undefined') {
+            // GMT Offset
             const offsetNow = new Date(now.valueOf() + (parseFloat(gmtOffset) * 1000 * 60 * 60));
             [seconds, minutes, hour] = [offsetNow.getUTCSeconds(), offsetNow.getUTCMinutes(), offsetNow.getUTCHours()];
             return { gmtOffset, seconds, minutes, hour };
+        } else if (relativeOffset && relativeOffset !== 'undefined'){ 
+            // Relative Offset
+            const offsetNow = new Date(now.valueOf() + (parseFloat(relativeOffset)));
+            [seconds, minutes, hour] = [offsetNow.getUTCSeconds(), offsetNow.getUTCMinutes(), offsetNow.getUTCHours()];
+            return { relativeOffset, seconds, minutes, hour };
         } else {
+            // No Offset
             [seconds, minutes, hour] = [now.getSeconds(), now.getMinutes(), now.getHours()];
-            return { gmtOffset, seconds, minutes, hour };
+            return { seconds, minutes, hour };
         }
 }
