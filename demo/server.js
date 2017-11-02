@@ -20,9 +20,10 @@ console.log('Server listening on port', SERVERPORT);
 
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
-}).listen(CLIENTPORT, 'localhost', err => {
+    disableHostCheck: true,
+}).listen(CLIENTPORT, err => {
     if (err) {
         console.log(err);
     }
-    console.log('Listening at localhost:3000');
+    console.log('Listening at localhost:'+CLIENTPORT);
 });
