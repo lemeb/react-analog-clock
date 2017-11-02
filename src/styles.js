@@ -1,7 +1,7 @@
 const AnalogBase = {
     background: s => s.theme.background,
     backgroundSize: 'cover',
-    display:'table',
+    display: 'table',
     backgroundPosition: 'center',
     borderRadius: '100%',
     border: s => `${s.width / 20}px solid ${s.theme.border}`,
@@ -22,21 +22,6 @@ const AnalogCenter = {
     top: '50%',
     transform: 'translateX(-50%) translateY(-50%)',
 };
-
-const DigitalTime = {
-    visibility: s => (s.theme.timeInCenter ? 'visible' : 'hidden'),
-    color: s => s.theme.time,
-    display:'table-cell',
-    textAlign: 'center',
-    height: '100%',
-    verticalAlign: 'middle',
-    fontFamily: 'monospace',
-    fontSize: '30px',
-}
-
-const DigitalSeconds = {
-    fontSize: '20px',
-}
 
 const AnalogHand = {
     left: '50%',
@@ -86,6 +71,21 @@ const AnalogLargeTick = {
     width: 4,
 };
 
+const DigitalTime = {
+    visibility: s => (s.theme.timeInCenter ? 'visible' : 'hidden'),
+    color: s => s.theme.time,
+    display: 'table-cell',
+    textAlign: 'center',
+    height: '100%',
+    verticalAlign: 'middle',
+    fontFamily: 'monospace',
+    fontSize: '30px',
+};
+
+const DigitalSeconds = {
+    fontSize: '20px',
+};
+
 const hiddenTicks = {
     property: s => s.theme.hiddenTicks,
 };
@@ -100,5 +100,5 @@ export default {
     largeTick: AnalogLargeTick,
     time: DigitalTime,
     secondsTime: DigitalSeconds,
-    hiddenTicks: hiddenTicks,
+    hiddenTicks,
 };

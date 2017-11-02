@@ -6,19 +6,32 @@ import Styles from './styles';
 import { cssTransform, updateTime } from './util';
 import { dark } from './themes';
 
+import { subscribeToTimer } from './api';
+
 export default class AnalogClock extends Component {
 
     constructor(props) {
         super();
 
-        this.state = updateTime(props); 
+        this.state = updateTime(props);
         this.styles = cssTransform(Styles, props);
     }
 
     componentDidMount() {
+        subscribeToTimer((err, timestamp) => this.setState({
+            timestamp,
+        }));
+
         this.interval = setInterval(() => {
-            this.setState(updateTime(this.state));
-        }, 10);
+            this.setState((prevState) => {
+                const newState = updateTime(prevState);
+                if (prevState.seconds !== newState.seconds) {
+                    return newState;
+                } else {
+                    return prevState;
+                }
+            });
+        }, 50);
     }
     // TODO align clocks to reduce interval
 

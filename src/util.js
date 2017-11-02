@@ -13,21 +13,39 @@ export function cssTransform(styles, props) {
     }, {});
 }
 
-export function updateTime({ gmtOffset, relativeOffset, seconds, minutes, hour }) {
-        const now = new Date();
-        if (gmtOffset && gmtOffset !== 'undefined') {
-            // GMT Offset
-            const offsetNow = new Date(now.valueOf() + (parseFloat(gmtOffset) * 1000 * 60 * 60));
-            [seconds, minutes, hour] = [offsetNow.getUTCSeconds(), offsetNow.getUTCMinutes(), offsetNow.getUTCHours()];
-            return { gmtOffset, seconds, minutes, hour };
-        } else if (relativeOffset && relativeOffset !== 'undefined'){ 
-            // Relative Offset
-            const offsetNow = new Date(now.valueOf() + (parseFloat(relativeOffset)));
-            [seconds, minutes, hour] = [offsetNow.getSeconds(), offsetNow.getMinutes(), offsetNow.getHours()];
-            return { relativeOffset, seconds, minutes, hour };
-        } else {
-            // No Offset
-            [seconds, minutes, hour] = [now.getSeconds(), now.getMinutes(), now.getHours()];
-            return { seconds, minutes, hour };
-        }
+function convertToUTC(date) {
+    return new Date(
+        date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),
+        date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(),
+        date.getUTCMilliseconds()
+    );
+}
+
+export function updateTime({ gmtOffset, relativeOffset, timestamp }) {
+    // Note: timestamp as input and output is a STRING
+    const now = ((timestamp && timestamp !== 'undefined') ?
+                    new Date(timestamp)
+                    : new Date()); // Date obj of now
+    timestamp = ((timestamp && timestamp !== 'undefined') ?
+                    timestamp : now.toISOString()); // Convert to string
+    let [milliseconds, seconds, minutes, hour] = [0, 0, 0, 0];
+    let dateToDisplay = now;
+
+    if (gmtOffset && gmtOffset !== 'undefined') {
+        // GMT Offset
+        const ots = now.valueOf() + (parseFloat(gmtOffset) * 1000 * 60 * 60);
+        const offsetNow = new Date(ots);
+        dateToDisplay = convertToUTC(offsetNow);
+    } else if (relativeOffset && relativeOffset !== 'undefined') {
+        // Relative Offset
+        dateToDisplay = new Date(now.valueOf() + (parseFloat(relativeOffset)));
+    }
+
+    [milliseconds, seconds, minutes, hour] = [
+        dateToDisplay.getMilliseconds(), dateToDisplay.getSeconds(),
+        dateToDisplay.getMinutes(), dateToDisplay.getHours()];
+
+    return { milliseconds, seconds, minutes, hour,
+        relativeOffset, gmtOffset, timestamp };
+
 }
